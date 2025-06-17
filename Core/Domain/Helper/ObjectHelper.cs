@@ -13,7 +13,11 @@ public static class ObjectHelper
     /// <returns>The modified destination object</returns>
     public static TDest Map<TDest, TSource>(TSource source, TDest dest) where TDest : class, new()
     {
-        if (source != null)
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+        else
         {
             var properties = dest.GetType().GetProperties();
             foreach (var property in properties)
@@ -21,7 +25,7 @@ public static class ObjectHelper
                 try
                 {
                     var sourceValue = source.GetType().GetProperty(property.Name)?.GetValue(source);
-                    if (sourceValue != null)
+                    if (sourceValue is not null)
                     {
                         // Perform deep copy using JSON serialization
                         var serialized = System.Text.Json.JsonSerializer.Serialize(sourceValue);
@@ -35,10 +39,6 @@ public static class ObjectHelper
                     Console.WriteLine($"Property {property.Name} can't be copied");
                 }
             }
-        }
-        else
-        {
-            throw new ArgumentNullException(nameof(source));
         }
 
         return dest;

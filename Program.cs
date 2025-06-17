@@ -1,3 +1,5 @@
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,16 +8,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.AddJsonFile($"Environment/appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.EnvironmentName == AppEnvironment.Development)
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NETCore Base API v1"));
+    app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "NETCore Base API v1"));
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
+await app.RunAsync();
