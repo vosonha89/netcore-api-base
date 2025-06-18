@@ -8,4 +8,16 @@ public static class AppEnvironment
     public const string Development = "Development";
     public const string Staging = "Staging";
     public const string Production = "Production";
+
+    /// <summary>
+    /// Apply application config
+    /// </summary>
+    /// <param name="builder"></param>
+    public static void ApplyConfig(ref WebApplicationBuilder builder)
+    {
+        builder.Configuration.AddJsonFile(
+            $"Environment/appsettings.{builder.Environment.EnvironmentName}.json",
+            optional: false,
+            reloadOnChange: true);
+    }
 }
