@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <Folder Include="Infrastructure\External\" />
+      <Folder Include="Infrastructure\Persistence\Repositories\" />
     </ItemGroup>
 
 </Project>
