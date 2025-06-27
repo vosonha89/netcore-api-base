@@ -10,11 +10,11 @@ using Microsoft.Extensions.Configuration;
 /// </summary>
 public class ConfigurationMap
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfigurationManager _configurationManager;
 
-    protected ConfigurationMap(IConfiguration configuration)
+    public ConfigurationMap(IConfigurationManager configuration)
     {
-        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        _configurationManager = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
     /// <summary>
@@ -24,41 +24,41 @@ public class ConfigurationMap
     /// <returns>The configuration value as string, or null if not found</returns>
     public string? GetValue(string key)
     {
-        return _configuration[key];
+        return _configurationManager[key];
     }
 
     /// <summary>
     /// Gets a configuration value by key with a default value
     /// </summary>
     /// <param name="key">The configuration key</param>
-    /// <param name="defaultValue">Default value if key is not found</param>
+    /// <param name="defaultValue">Default value if the key is not found</param>
     /// <returns>The configuration value or default value</returns>
     public string GetValue(string key, string defaultValue)
     {
-        return _configuration[key] ?? defaultValue;
+        return _configurationManager[key] ?? defaultValue;
     }
 
     /// <summary>
-    /// Gets a strongly-typed configuration value
+    /// Gets a strongly typed configuration value
     /// </summary>
     /// <typeparam name="T">The type to convert the value to</typeparam>
     /// <param name="key">The configuration key</param>
     /// <returns>The converted value, or default(T) if not found or conversion fails</returns>
     public T? GetValue<T>(string key)
     {
-        return _configuration.GetValue<T>(key);
+        return _configurationManager.GetValue<T>(key);
     }
 
     /// <summary>
-    /// Gets a strongly-typed configuration value with a default
+    /// Gets a strongly typed configuration value with a default
     /// </summary>
     /// <typeparam name="T">The type to convert the value to</typeparam>
     /// <param name="key">The configuration key</param>
-    /// <param name="defaultValue">Default value if key is not found</param>
+    /// <param name="defaultValue">Default value if the key is not found</param>
     /// <returns>The converted value or default value</returns>
     public T? GetValue<T>(string key, T defaultValue)
     {
-        return _configuration.GetValue(key, defaultValue);
+        return _configurationManager.GetValue(key, defaultValue);
     }
 
     /// <summary>
@@ -68,11 +68,11 @@ public class ConfigurationMap
     /// <returns>The configuration section</returns>
     public IConfigurationSection GetSection(string key)
     {
-        return _configuration.GetSection(key);
+        return _configurationManager.GetSection(key);
     }
 
     /// <summary>
-    /// Binds a configuration section to a strongly-typed object
+    /// Binds a configuration section to a strongly typed object
     /// </summary>
     /// <typeparam name="T">The type to bind to</typeparam>
     /// <param name="key">The section key</param>
@@ -80,7 +80,7 @@ public class ConfigurationMap
     public T GetSection<T>(string key) where T : new()
     {
         var section = new T();
-        _configuration.GetSection(key).Bind(section);
+        _configurationManager.GetSection(key).Bind(section);
         return section;
     }
 
@@ -91,7 +91,7 @@ public class ConfigurationMap
     /// <returns>The connection string value</returns>
     public string? GetConnectionString(string name)
     {
-        return _configuration.GetConnectionString(name);
+        return _configurationManager.GetConnectionString(name);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public class ConfigurationMap
     /// <returns>True if the key exists, false otherwise</returns>
     public bool HasKey(string key)
     {
-        return _configuration[key] is not null;
+        return _configurationManager[key] is not null;
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ public class ConfigurationMap
     public Dictionary<string, string?> GetByPrefix(string prefix)
     {
         var result = new Dictionary<string, string?>();
-        var section = _configuration.GetSection(prefix);
+        var section = _configurationManager.GetSection(prefix);
 
         foreach (var child in section.GetChildren())
         {

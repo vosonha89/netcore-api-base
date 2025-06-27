@@ -8,6 +8,7 @@ public static class AppEnvironment
     public const string Development = "Development";
     public const string Staging = "Staging";
     public const string Production = "Production";
+    public static ConfigurationMap ConfigurationMap;
 
     /// <summary>
     /// Apply application config
@@ -19,5 +20,7 @@ public static class AppEnvironment
             $"Environment/appsettings.{builder.Environment.EnvironmentName}.json",
             optional: false,
             reloadOnChange: true);
+
+        ConfigurationMap = new ConfigurationMap(builder.Configuration);
     }
 }

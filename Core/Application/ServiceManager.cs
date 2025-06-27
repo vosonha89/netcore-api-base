@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Top.MasonTech.NetCoreBaseAPI.Core.Application.Interfaces;
 using Top.MasonTech.NetCoreBaseAPI.Core.Application.Services;
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Configuration;
+using Top.MasonTech.NetCoreBaseAPI.Infrastructure.Persistence.DbContexts;
 
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Application;
 
@@ -24,7 +27,10 @@ public static class ServiceManager
         #endregion
 
         #region Singleton Services
-
+        builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+        builder.Services.AddDbContextFactory<PsqlDbContext>(
+            x => x.UseNpgsql(AppEnvironment.ConfigurationMap.GetConnectionString("DefaultConnection")));
+        
         builder.Services.AddSingleton<ILoggingService, LoggingService>();
 
         #endregion
