@@ -8,7 +8,9 @@ public static class AppEnvironment
     public const string Development = "Development";
     public const string Staging = "Staging";
     public const string Production = "Production";
-    public static ConfigurationMap ConfigurationMap;
+    
+    public static ConfigurationMap? ConfigurationMap { get; private set; }
+
 
     /// <summary>
     /// Apply application config
