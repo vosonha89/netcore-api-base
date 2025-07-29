@@ -1,7 +1,8 @@
 # Top.MasonTech.NetCoreBaseAPI
 
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)][![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvosonha89%2Fnetcore-api-base.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvosonha89%2Fnetcore-api-base?ref=badge_shield)
+()
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=Top.MasonTech.NetCoreBaseAPI)
 [![SonarLint](https://img.shields.io/badge/SonarLint-Enabled-brightgreen)](https://www.sonarlint.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -253,6 +254,9 @@ dotnet ef database update --project Infrastructure/Persistence --startup-project
 ## 📄 License
 
 This project is licensed under the MIT License, see the [LICENSE](LICENSE) file for details.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvosonha89%2Fnetcore-api-base.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvosonha89%2Fnetcore-api-base?ref=badge_large)
 
 ## 🤝 Contributing
 
