@@ -29,7 +29,7 @@ public static class ServiceManager
         #region Singleton Services
         builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
         builder.Services.AddDbContextFactory<PsqlDbContext>(
-            x => x.UseNpgsql(AppEnvironment.ConfigurationMap?.GetConnectionString("DefaultConnection")));
+            x => x.UseNpgsql(AppEnvironment.ConfigurationMap?.ConnectionStringValue("DefaultConnection")));
         
         builder.Services.AddSingleton<ILoggingService, LoggingService>();
 

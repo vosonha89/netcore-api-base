@@ -1,7 +1,7 @@
 using System.Net;
-using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Constant;
 
 /// <summary>
 /// Global error definitions and helper methods

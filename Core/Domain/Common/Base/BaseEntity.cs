@@ -1,4 +1,4 @@
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Abstract base entity class that provides common fields for all entities

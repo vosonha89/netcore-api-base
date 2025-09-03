@@ -22,7 +22,7 @@ public class ConfigurationMap
     /// </summary>
     /// <param name="key">The configuration key (supports nested keys with ':' separator)</param>
     /// <returns>The configuration value as string, or null if not found</returns>
-    public string? GetValue(string key)
+    public string? Value(string key)
     {
         return _configurationManager[key];
     }
@@ -33,7 +33,7 @@ public class ConfigurationMap
     /// <param name="key">The configuration key</param>
     /// <param name="defaultValue">Default value if the key is not found</param>
     /// <returns>The configuration value or default value</returns>
-    public string GetValue(string key, string defaultValue)
+    public string Value(string key, string defaultValue)
     {
         return _configurationManager[key] ?? defaultValue;
     }
@@ -44,7 +44,7 @@ public class ConfigurationMap
     /// <typeparam name="T">The type to convert the value to</typeparam>
     /// <param name="key">The configuration key</param>
     /// <returns>The converted value, or default(T) if not found or conversion fails</returns>
-    public T? GetValue<T>(string key)
+    public T? Value<T>(string key)
     {
         return _configurationManager.GetValue<T>(key);
     }
@@ -56,7 +56,7 @@ public class ConfigurationMap
     /// <param name="key">The configuration key</param>
     /// <param name="defaultValue">Default value if the key is not found</param>
     /// <returns>The converted value or default value</returns>
-    public T? GetValue<T>(string key, T defaultValue)
+    public T? Value<T>(string key, T defaultValue)
     {
         return _configurationManager.GetValue(key, defaultValue);
     }
@@ -66,7 +66,7 @@ public class ConfigurationMap
     /// </summary>
     /// <param name="key">The section key</param>
     /// <returns>The configuration section</returns>
-    public IConfigurationSection GetSection(string key)
+    public IConfigurationSection SectionValue(string key)
     {
         return _configurationManager.GetSection(key);
     }
@@ -77,7 +77,7 @@ public class ConfigurationMap
     /// <typeparam name="T">The type to bind to</typeparam>
     /// <param name="key">The section key</param>
     /// <returns>The bound object instance</returns>
-    public T GetSection<T>(string key) where T : new()
+    public T SectionValue<T>(string key) where T : new()
     {
         var section = new T();
         _configurationManager.GetSection(key).Bind(section);
@@ -89,7 +89,7 @@ public class ConfigurationMap
     /// </summary>
     /// <param name="name">The connection string name</param>
     /// <returns>The connection string value</returns>
-    public string? GetConnectionString(string name)
+    public string? ConnectionStringValue(string name)
     {
         return _configurationManager.GetConnectionString(name);
     }
@@ -109,7 +109,7 @@ public class ConfigurationMap
     /// </summary>
     /// <param name="prefix">The key prefix</param>
     /// <returns>Dictionary of matching keys and values</returns>
-    public Dictionary<string, string?> GetByPrefix(string prefix)
+    public Dictionary<string, string?> ValueByPrefix(string prefix)
     {
         var result = new Dictionary<string, string?>();
         var section = _configurationManager.GetSection(prefix);

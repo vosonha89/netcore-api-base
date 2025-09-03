@@ -37,7 +37,7 @@ public abstract class SourceObject
     /// Gets all property names
     /// </summary>
     /// <returns>Array of property names</returns>
-    public string[] GetPropertyNames()
+    public string[] PropertyNames()
     {
         return _properties.Keys.ToArray();  
     }

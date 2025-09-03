@@ -1,11 +1,11 @@
 using System.Text;
 
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Helper;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Utils;
 
 /// <summary>
 /// Provides utility functions for common operations
 /// </summary>
-public static class FunctionHelper
+public static class FunctionUtils
 {
     /// <summary>
     /// Converts a string to its Base64 representation

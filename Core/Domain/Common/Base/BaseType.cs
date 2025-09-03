@@ -1,4 +1,4 @@
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Base type class with generic identifier

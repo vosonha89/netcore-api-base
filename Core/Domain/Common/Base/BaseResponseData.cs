@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Base response data class for all API responses
@@ -153,7 +153,6 @@ public class BaseResponse<T> : BaseResponseData<T>
     /// <param name="msg">Response message</param>
     /// <param name="exception">Exception details if an error occurred</param>
     public BaseResponse(HttpStatusCode status, T? data = default, bool successful = false, string msg = "", ClientError? exception = null)
-        : base()
     {
         Status = (int)status;
         Msg = msg;

@@ -1,9 +1,9 @@
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Helper;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Utils;
 
 /// <summary>
 /// Object helper class
 /// </summary>
-public static class ObjectHelper
+public static class ObjectUtils
 {
     /// <summary>
     /// Mapping data using deep copy property

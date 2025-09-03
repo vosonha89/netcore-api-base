@@ -1,4 +1,4 @@
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Normal error message
@@ -59,7 +59,7 @@ public class BaseException : Exception
     /// <param name="exception">Additional exception data</param>
     /// <param name="message">Error message</param>
     /// <param name="innerException">Inner exception</param>
-    public BaseException(object? exception, string? message, System.Exception? innerException)
+    public BaseException(object? exception, string? message, Exception? innerException)
         : base(message, innerException)
     {
         Exception = exception;

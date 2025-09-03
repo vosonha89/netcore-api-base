@@ -1,6 +1,6 @@
 using System.Net;
-using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Base;
-using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common;
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Constant;
 
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Object;
 
