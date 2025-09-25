@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Top.MasonTech.NetCoreBaseAPI.Infrastructure.Persistence.Entities;
 
-namespace Top.MasonTech.NetCoreBaseAPI.Infrastructure.Persistence.DbContexts;
+namespace Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.DbContexts;
 
 /// <summary>
 /// PSQL database context

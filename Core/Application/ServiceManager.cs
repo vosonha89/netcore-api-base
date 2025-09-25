@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Top.MasonTech.NetCoreBaseAPI.Core.Application.Interfaces;
-using Top.MasonTech.NetCoreBaseAPI.Core.Application.Services;
 using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Configuration;
-using Top.MasonTech.NetCoreBaseAPI.Infrastructure.Persistence.DbContexts;
+using Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.DbContexts;
+using Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.Logging;
 
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Application;
 

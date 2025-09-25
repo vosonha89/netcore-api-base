@@ -1,4 +1,4 @@
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Application.Interfaces;
+namespace Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.Logging;
 
 /// <summary>
 /// Interface for a logging service to abstract logging implementation details from the application core

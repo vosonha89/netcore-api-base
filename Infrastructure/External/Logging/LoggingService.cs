@@ -1,11 +1,9 @@
-using Top.MasonTech.NetCoreBaseAPI.Core.Application.Interfaces;
-
-namespace Top.MasonTech.NetCoreBaseAPI.Core.Application.Services;
+namespace Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.Logging;
 
 /// <summary>
 /// Simple implementation of the ILoggingService interface using Console.WriteLine
 /// </summary>
-public class LoggingService : ILoggingService
+public partial class LoggingService : ILoggingService
 {
     /// <summary>
     /// Initializes a new instance of the LoggingService class

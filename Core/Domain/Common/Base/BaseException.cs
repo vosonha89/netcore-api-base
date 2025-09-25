@@ -17,7 +17,7 @@ public class ErrorMessage
 }
 
 /// <summary>
-/// Error definition for client side
+/// Error definition for the client side
 /// </summary>
 public class ClientError
 {
