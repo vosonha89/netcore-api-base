@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Top.MasonTech.NetCoreBaseAPI.Core.Application.Services.Product;
+using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Interface;
 using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Configuration;
 using Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.DbContexts;
 using Top.MasonTech.NetCoreBaseAPI.Infrastructure.External.Logging;
+using Top.MasonTech.NetCoreBaseAPI.Infrastructure.Persistence.Repositories;
 
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Application;
 
@@ -26,19 +29,24 @@ public static class ServiceManager
         #endregion
 
         #region Singleton Services
+
         builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-        builder.Services.AddDbContextFactory<PsqlDbContext>(
-            x => x.UseNpgsql(AppEnvironment.ConfigurationMap?.ConnectionStringValue("DefaultConnection")));
-        
+        builder.Services.AddDbContextFactory<PsqlDbContext>(x =>
+            x.UseNpgsql(AppEnvironment.ConfigurationMap?.ConnectionStringValue("DefaultConnection")));
+
         builder.Services.AddSingleton<ILoggingService, LoggingService>();
 
         #endregion
 
         #region Scoped Services
 
+        builder.Services.AddScoped<IProductService, ProductService>();
+
         #endregion
 
         #region Transient Services
+
+        builder.Services.AddTransient<IAppRepository, AppRepository>();
 
         #endregion
     }
