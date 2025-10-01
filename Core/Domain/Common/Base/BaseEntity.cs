@@ -1,15 +1,17 @@
+using DevNetCore.SimpleRepository.Abstract;
+
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Abstract base entity class that provides common fields for all entities
 /// </summary>
 /// <typeparam name="TId">The type of the identifier field</typeparam>
-public abstract class BaseEntity<TId>
+public abstract class BaseEntity<TId>: DbEntity
 {
     /// <summary>
     /// Unique identifier for the entity
     /// </summary>
-    public required TId Id { get; set; }
+    public TId Id { get; set; }
 
     /// <summary>
     /// Timestamp when the entity was created

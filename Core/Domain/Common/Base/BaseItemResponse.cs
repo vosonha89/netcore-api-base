@@ -1,4 +1,6 @@
-﻿namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
+﻿using Omu.ValueInjecter;
+
+namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
 
 /// <summary>
 /// Base item response for entity data
@@ -10,7 +12,7 @@ public abstract class BaseItemResponse<TSource, TId>
     /// <summary>
     /// Entity identifier
     /// </summary>
-    public required TId Id { get; set; }
+    public TId Id { get; set; }
 
     /// <summary>
     /// Creation timestamp
@@ -30,5 +32,6 @@ public abstract class BaseItemResponse<TSource, TId>
     {
         // Base implementation to be overridden by derived classes
         // Object mapping will depend on implementation details
+        this.InjectFrom(source);
     }
 }
