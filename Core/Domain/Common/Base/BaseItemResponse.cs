@@ -12,17 +12,17 @@ public abstract class BaseItemResponse<TSource, TId>
     /// <summary>
     /// Entity identifier
     /// </summary>
-    public TId Id { get; set; }
+    public TId? Id { get; set; }
 
     /// <summary>
     /// Creation timestamp
     /// </summary>
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Last update timestamp
     /// </summary>
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Maps properties from the source object to this response

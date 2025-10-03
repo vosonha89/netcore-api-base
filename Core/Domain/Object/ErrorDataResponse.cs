@@ -12,20 +12,25 @@ public class ErrorDataResponse : BaseDataResponse<object?>
     /// <summary>
     /// Not found error
     /// </summary>
-    public static ErrorDataResponse NotFound { get; } = new ErrorDataResponse(
+    public static ErrorDataResponse NotFound
+    {
+        get;
+    } = new ErrorDataResponse(
         HttpStatusCode.NotFound,
         "The requested resource could not be found.",
         new ClientError
         {
-            ErrorCode = GlobalError.NotFoundError.Code.ToString(),
-            ErrorMessage = GlobalError.NotFoundError.Msg
+            ErrorCode = GlobalError.NotFoundError.Code.ToString(), ErrorMessage = GlobalError.NotFoundError.Msg
         }
     );
 
     /// <summary>
     /// Unauthorized error
     /// </summary>
-    public static ErrorDataResponse Unauthorized { get; } = new ErrorDataResponse(
+    public static ErrorDataResponse Unauthorized
+    {
+        get;
+    } = new ErrorDataResponse(
         HttpStatusCode.Unauthorized,
         "The user does not have the necessary credentials.",
         new ClientError
@@ -38,15 +43,41 @@ public class ErrorDataResponse : BaseDataResponse<object?>
     /// <summary>
     /// Forbidden error
     /// </summary>
-    public static ErrorDataResponse Forbidden { get; } = new ErrorDataResponse(
+    public static ErrorDataResponse Forbidden
+    {
+        get;
+    } = new ErrorDataResponse(
         HttpStatusCode.Forbidden,
         "The user might not have the necessary permissions for a resource.",
         new ClientError
         {
-            ErrorCode = GlobalError.ForbiddenError.Code.ToString(),
-            ErrorMessage = GlobalError.ForbiddenError.Msg
+            ErrorCode = GlobalError.ForbiddenError.Code.ToString(), ErrorMessage = GlobalError.ForbiddenError.Msg
         }
     );
+
+    /// <summary>
+    /// Creates a new ErrorDataResponse instance
+    /// </summary>
+    /// <param name="status">The HTTP status code of the error</param>
+    /// <param name="msg">Optional message describing the error</param>
+    /// <param name="exception">Optional client error object containing additional error details</param>
+    public ErrorDataResponse(HttpStatusCode status, string msg = "", ClientError? exception = null)
+        : base(status, string.Empty, true, msg, exception)
+    {
+        Data = null;
+        Status = (int)status;
+        Successful = false;
+
+        if (!string.IsNullOrEmpty(msg))
+        {
+            Msg = msg;
+        }
+
+        if (exception is not null)
+        {
+            Exception = exception;
+        }
+    }
 
     /// <summary>
     /// Creates a BadRequest error response
@@ -74,29 +105,5 @@ public class ErrorDataResponse : BaseDataResponse<object?>
             "An unexpected condition was encountered and no more specific message is suitable",
             exception
         );
-    }
-
-    /// <summary>
-    /// Creates a new ErrorDataResponse instance
-    /// </summary>
-    /// <param name="status">The HTTP status code of the error</param>
-    /// <param name="msg">Optional message describing the error</param>
-    /// <param name="exception">Optional client error object containing additional error details</param>
-    public ErrorDataResponse(HttpStatusCode status, string? msg = "", ClientError? exception = null)
-        : base(status, string.Empty, true, msg, exception)
-    {
-        Data = null;
-        Status = (int)status;
-        Successful = false;
-
-        if (!string.IsNullOrEmpty(msg))
-        {
-            Msg = msg;
-        }
-
-        if (exception is not null)
-        {
-            Exception = exception;
-        }
     }
 }

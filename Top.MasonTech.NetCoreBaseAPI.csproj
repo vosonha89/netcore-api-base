@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DevNetCore.SimpleRepository" Version="0.0.2" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
         <PackageReference Include="SonarAnalyzer.CSharp" Version="10.11.0.117924">
           <PrivateAssets>all</PrivateAssets>

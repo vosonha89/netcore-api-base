@@ -1,0 +1,53 @@
+root = true
+
+[*.cs]
+
+# Charset & Encoding
+charset = utf-8-bom
+
+# Indentation & Spacing
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# New line options
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_between_query_expression_clauses = true
+
+# Wrapping & Braces
+csharp_preserve_single_line_statements = false
+csharp_preserve_single_line_blocks = false
+
+# Prefer var rules
+dotnet_style_require_var_for_built_in_types = true:suggestion
+dotnet_style_require_var_for_simple_types = true:suggestion
+dotnet_style_require_var_for_complex_types = true:suggestion
+
+# Expression-level preferences
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+
+# Naming rules (Microsoft default)
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_fields.required_modifiers =
+
+dotnet_naming_style.camel_case.capitalization = camel_case
+dotnet_naming_style.camel_case.required_prefix = _
+dotnet_naming_style.camel_case.required_suffix =
+
+# File layout
+file_header_template = unset
