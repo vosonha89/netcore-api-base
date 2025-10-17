@@ -10,9 +10,9 @@
 public class BaseSearchFilter
 {
     public string FieldName { get; set; }
-    public dynamic FieldValue { get; set; }
+    public object FieldValue { get; set; }
 
-    public BaseSearchFilter(string fieldName, dynamic fieldValue)
+    public BaseSearchFilter(string fieldName, object fieldValue)
     {
         FieldName = fieldName;
         FieldValue = fieldValue;

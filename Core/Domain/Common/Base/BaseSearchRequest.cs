@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using System.Text.Json;
 using Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Constant;
 
 namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Base;
@@ -19,9 +20,7 @@ public abstract class BaseSearchRequest
 
     public BaseSearchFilter[] FilterBy { get; set; } = [];
 
-    // public string? SortColumn { get; set; }
-
-    public bool IsDescending { get; set; } = false;
+    public BaseSort[] OrderBy { get; set; } = [];
 
     public Expression<Func<T, bool>> GenerateQuery<T, TId>() where T : BaseEntity<TId>, new()
     {
@@ -31,24 +30,41 @@ public abstract class BaseSearchRequest
         {
             var property = Expression.Property(parameter, filter.FieldName);
             Expression condition;
-            if (filter.FieldValue == null)
+            string? rawValue;
+            if (filter.FieldValue is JsonElement rawJsonElement)
             {
-                // x.Property == null
-                condition = Expression.Equal(property, Expression.Constant(null, property.Type));
+                rawValue = rawJsonElement.GetRawText();
             }
             else
             {
-                var constant = Expression.Constant(filter.FieldValue);
-                var converted = Expression.Convert(constant, property.Type);
-                condition = Expression.Equal(property, converted);
+                rawValue = filter.FieldValue.ToString();
             }
 
-            body = body == null ? condition : Expression.AndAlso(body, condition);
+            var constant = Expression.Constant(rawValue);
+            var converted = Expression.Convert(constant, property.Type);
+            condition = Expression.Equal(property, converted);
+
+            body = body is null ? condition : Expression.AndAlso(body, condition);
         }
-        if (body == null)
+        if (body is null)
         {
             body = Expression.Constant(true); // no filters
         }
         return Expression.Lambda<Func<T, bool>>(body, parameter);
+    }
+
+    /// <summary>
+    /// Generate order by string
+    /// </summary>
+    /// <typeparam name="TId"></typeparam>
+    /// <returns></returns>
+    public string GenerateOrderByString<TId>()
+    {
+        if (!OrderBy.Any())
+        {
+            return $"{nameof(BaseEntity<TId>.Id)} ASC";
+        }
+        var clauses = OrderBy.Select(x => $"{x.FieldName} {(x.IsDescending ? "DESC" : "ASC")}");
+        return string.Join(", ", clauses);
     }
 }

@@ -9,15 +9,9 @@ namespace Top.MasonTech.NetCoreBaseAPI.Core.Domain.Common.Interface;
 /// </summary>
 public interface IAppRepository
 {
-    /// <summary>
-    /// Search with filter
-    /// </summary>
-    /// <param name="predicate"></param>
-    /// <param name="pageSize"></param>
-    /// <param name="pageIndex"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    Task<List<T>> Search<T, TId>(Expression<Func<T, bool>> predicate,
+    Task<List<T>> Search<T, TId>(
+        Expression<Func<T, bool>> predicate,
+        string orderByString,
         int pageSize = ConstantValue.PageSize,
         int pageIndex = ConstantValue.PageIndex) where T : BaseEntity<TId>, new();
 }

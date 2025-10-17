@@ -1,3 +1,4 @@
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -17,17 +18,21 @@ public class AppRepository : IAppRepository
         _contextFactory = contextFactory;
     }
 
-    public async Task<List<T>> Search<T, TId>(Expression<Func<T, bool>> predicate,
+    public async Task<List<T>> Search<T, TId>(
+        Expression<Func<T, bool>> predicate,
+        string orderByString,
         int pageSize = ConstantValue.PageSize,
         int pageIndex = ConstantValue.PageIndex) where T : BaseEntity<TId>, new()
     {
         using (var context = await _contextFactory.CreateDbContextAsync())
         {
-           return await context.Set<T>()
+            var query = context
+                .Set<T>()
                 .Where(predicate)
+                .OrderBy(orderByString)
                 .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync<T>();
+                .Take(pageSize);
+            return await query.ToListAsync<T>();
         }
     }
 
